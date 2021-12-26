@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="box">
+        <form action="/login" method="post" id="login">
+            <h1>Yaayy! Your Account has been created!</h1>
+           
+            <p style="font-size: 18px;"> Redirecting You in <span id="countdowntimer">4 </span> ...</p>
+
+            <script type="text/javascript">
+                var timeleft = 4;
+                var downloadTimer = setInterval(function(){
+                timeleft--;
+                document.getElementById("countdowntimer").textContent = timeleft;
+                if(timeleft <= 1){
+                    clearInterval(downloadTimer);
+                    window.location.replace("/");
+                }
+                },1000);
+            </script>
+        </form>
+        
+        
+    </div>
+</body>
+</html>

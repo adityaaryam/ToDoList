@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List | <%=LoginSignup%></title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://kit.fontawesome.com/cf48bfe7b5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="box">
+        <form action="/login" method="post" id="login">
+            <h1><%=Greeting%></h1>
+            <p class="<%=hidewrongness%>" style="font-size: 10px; color: red;">Wrong Username/Password. Try Again.</p>
+            <p class="<%=hideAlreadyExsists%>" style="font-size: 10px; color: red;">Username Already Taken</p>
+            <input type="text" class="<%=hide%>" name="nameOfUser" id="logintop" placeholder="<%=loginCred1%>" >
+            <input type="email" class="<%=hide%>" name="emailOfUser" id="" placeholder="<%=loginCred2%>" >
+            <input type="text"  name="username" id="" placeholder="<%=loginCred3%>" required>
+            <input type="password" name="password" id="loginbottom" placeholder="<%=loginCred4%>" required>
+            <button type="submit" name="logsign" value="<%=LoginSignup%>"><%=LoginSignup%></button>
+        </form>
+        <form action="/signup" method="post">
+            <button type="submit" name="logsign" value="<%=LoginSignup%>" class="btn-link"><%=AccExist%></button>
+        </form>
+        
+    </div>
+
+    <section id="foot">
+        
+        <a href="https://api.whatsapp.com/send/?phone=917892004639&text&app_absent=0"><i class="footicon fab fa-whatsapp"></i></a>
+        <a href="https://twitter.com/adityaaryam10"><i class="footicon fab fa-twitter"></i></a>
+        <a href="https://github.com/adityaaryam"><i class="footicon fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/aditya-aryam-59b188202"><i class="footicon fab fa-linkedin-in"></i></a>
+        <p style="font-size: 12px;"> <i class="far fa-copyright"></i> 2021-2022 Aditya Aryam. All Rights Reserved</p> 
+
+    </section>
+</body>
+</html>

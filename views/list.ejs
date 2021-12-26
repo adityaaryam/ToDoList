@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List | <%=ListTitle%>  </title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://kit.fontawesome.com/cf48bfe7b5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <form action="/<%=userid%>/logout" method="post">
+        <button class="logout" type="submit">Logout</button>
+    </form>
+    <div class="boxlist" >
+        <h1><%=ListTitle%> </h1>
+        
+    </div>
+    
+    <div class="boxlistitem">
+        
+        <% for(var i=0;i<ListItems.length;i++){ %>
+            <form action="/<%=userid%>/deleteItem" method="post">
+                <div class="item">
+                    <input type="checkbox" name="checkbox" value="<%= ListItems[i]._id%>" onchange="this.form.submit()" >
+                    <p><%=ListItems[i].name %></p>
+                </div>
+                <input type="hidden" name="listname" value="<%= ListTitle%>"></input>
+            
+            </form>
+        <% } %>
+          
+        
+    </div>
+    
+    
+    <form class="formitem" action="/<%=userid%>/<%=ListTitle%>/addItem" method="post">
+        <input type="text" name="toDoItem" placeholder="Add Item" autofocus autocomplete="off">
+        <button type="submit" name="btn" value= "">+</button>
+    </form>
+    <br><br><br>
+    <form action="/<%=userid%>/redirectionFromList/<%=ListTitle%>" method="post">
+        <button type="submit" class="btn" name="redirectionfromlist" value="allList" > Go to All Lists</button>
+        &nbsp;
+        <button type="submit" class="btn" name="redirectionfromlist" value="delList"> Delete This List</button>
+    </form>
+
+    
+    <section id="foot">
+        
+        <a href="https://api.whatsapp.com/send/?phone=917892004639&text&app_absent=0"><i class="footicon fab fa-whatsapp"></i></a>
+        <a href="https://twitter.com/adityaaryam10"><i class="footicon fab fa-twitter"></i></a>
+        <a href="https://github.com/adityaaryam"><i class="footicon fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/aditya-aryam-59b188202"><i class="footicon fab fa-linkedin-in"></i></a>
+        <p style="font-size: 12px;"> <i class="far fa-copyright"></i> 2021-2022 Aditya Aryam. All Rights Reserved</p> 
+
+    </section>
+    
+</body>
+</html> 
