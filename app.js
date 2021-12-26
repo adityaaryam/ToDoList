@@ -118,28 +118,35 @@ app.post("/:user/list",function(req,res){
             res.redirect("/");
             else
             {
-                var found=false;
-                var arr=userdoc.userAllLists
-                for(var i=0;i<arr.length;i++)
+                if(req.body.newList=='')
                 {
-                    if(arr[i].name===_.startCase(req.body.newList))
-                    {
-                        found=true;
-                        break;
-                    }
-                }
-                if(!found){
-                    const userListItem= new AllList({
-                        name:_.startCase(req.body.newList)
-                    });
-                    userdoc.userAllLists.push(userListItem);
-                    userdoc.save();
                     res.redirect("/"+req.params.user);
-                    // res.redirect("/"+req.params.user);
                 }
                 else
                 {
-                    res.redirect("/"+req.params.user);
+                    var found=false;
+                    var arr=userdoc.userAllLists
+                    for(var i=0;i<arr.length;i++)
+                    {
+                        if(arr[i].name===_.startCase(req.body.newList))
+                        {
+                            found=true;
+                            break;
+                        }
+                    }
+                    if(!found){
+                        const userListItem= new AllList({
+                            name:_.startCase(req.body.newList)
+                        });
+                        userdoc.userAllLists.push(userListItem);
+                        userdoc.save();
+                        res.redirect("/"+req.params.user);
+                        // res.redirect("/"+req.params.user);
+                    }
+                    else
+                    {
+                        res.redirect("/"+req.params.user);
+                    }
                 }
                 // console.log(userdoc);
             }
