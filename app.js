@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express=require("express");
 const bodyParser=require("body-parser");
 const mongoose= require("mongoose");
@@ -7,7 +8,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine','ejs');
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://admin-adityaaryam:abhi4848@cluster0.ui5fx.mongodb.net/UserDB");
+mongoose.connect(process.env.LINK);
 const itemSchema = {
     name: String
 };
