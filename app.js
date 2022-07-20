@@ -4,6 +4,7 @@ const bodyParser=require("body-parser");
 const mongoose= require("mongoose");
 const app=express();
 const  _ = require("lodash");
+const bcrypt=require("bcrypt");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine','ejs');
 app.use(express.static("public"));
@@ -167,7 +168,7 @@ app.post("/login",function(req,res){
     
     if(req.body.logsign==="Login")
     {
-        User.findOne({username:userId},function(err,userdata){
+        User.findOne({username:userId},async (err,userdata)=>{
             if(!err)
             {
                 if(!userdata)
@@ -178,7 +179,8 @@ app.post("/login",function(req,res){
                 }
                 else
                 {
-                    if(userdata.password===pass)
+                    const getpass= await bcrypt.compare(pass,userdata.password);
+                    if(getpass)
                     {
                         correctlogin=true;
                         console.log("Found");
@@ -197,7 +199,7 @@ app.post("/login",function(req,res){
     }
     else
     {
-        User.findOne({username:userId},function(err,userdata){
+        User.findOne({username:userId},async (err,userdata)=>{
             if(!err)
             {
                 if(userdata)
@@ -210,9 +212,10 @@ app.post("/login",function(req,res){
                 {
                     correctexsists=true;
                     correctlogin=true;
+                    const hashpass=await bcrypt.hash(pass,10);
                     const user= new User({
                         username: userId,
-                        password: pass,
+                        password: hashpass,
                         nameOfUser: user_name,
                         emailOfUser: user_email
                     });
