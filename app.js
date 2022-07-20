@@ -374,10 +374,6 @@ app.post("/:user/redirectionFromList/:listtitle",function(req,res){
     res.redirect("/"+req.params.user);
 })
 
-let port=process.env.PORT;
-if(port==null || port==""){
-    port=3000;
-}
-app.listen(port,function(){
+app.listen(process.env.PORT || 3000,function(){
     console.log("Server Started Successfully...");
 });
